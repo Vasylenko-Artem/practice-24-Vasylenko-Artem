@@ -1,22 +1,18 @@
 #include "app.h"
 #include "menu.h"
+#include "tasks.h"
 
 #include <iostream>
 
 using namespace std;
 
-app::app(/* args */)
-{
-	run();
-}
+app::app(/* args */) { run(); }
 
-app::~app()
-{
-}
+app::~app() {}
 
 void app::run()
 {
-	cout << "Running app..." << endl;
+	menu m(tasks);
 
-	Menu m;
+	m.show();
 }
