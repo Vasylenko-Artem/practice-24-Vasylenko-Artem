@@ -6,13 +6,8 @@
 
 using namespace std;
 
-app::app(/* args */) { run(); }
-
-app::~app() {}
-
 void app::run()
 {
 	menu m(tasks);
-
 	m.show();
 }
