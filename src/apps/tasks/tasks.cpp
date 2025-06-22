@@ -8,5 +8,4 @@ const map<char, pair<string, function<void()>>> tasks = {
 	{'3', {"Task 3", task_03}},
 	{'4', {"Task 4", task_04}},
 	{'5', {"Task 5", task_05}},
-	{'6', {"Task 6", task_06}},
-	{'q', {"Quit", [] {}}}};
+	{'6', {"Task 6", task_06}}};

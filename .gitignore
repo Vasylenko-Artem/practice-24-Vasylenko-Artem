@@ -1,6 +1,9 @@
 # MacOS system files
 *.DS_Store
 
+# Public
+public/*
+
 # Build output directories
 bin/
 build/

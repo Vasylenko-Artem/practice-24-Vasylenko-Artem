@@ -1,5 +1,4 @@
 #include "menu.h"
-#include <ncurses.h>
 
 using namespace std;
 
@@ -8,76 +7,83 @@ menu::menu(const map<char, pair<string, function<void()>>> &options)
 
 menu::~menu() {}
 
+void clearConsole()
+{
+#ifdef _WIN32
+	system("cls");
+#else
+	system("clear");
+#endif
+}
+
+void pauseConsole()
+{
+	cout << "\nPress any key to continue...\n";
+	getchar();
+	getchar();
+	clearConsole();
+}
+
+void newLine() { cout << endl; }
+
+bool checkChoiceInput(char ch, const vector<char> &validChoices)
+{
+	for (char validCh : validChoices)
+		if (ch == validCh)
+			return true;
+
+	return false;
+}
+
 void menu::show()
 {
-	initscr();
-	noecho();
-	cbreak();
-	keypad(stdscr, TRUE);
-	curs_set(0);
+	clearConsole();
+	char ch;
 
-	int highlight = 0;
-
-	vector<char> keys;
-	vector<string> labels;
-
-	for (const auto &opt : options_)
-	{
-		keys.push_back(opt.first);
-		labels.push_back(opt.second.first);
-	}
+	vector<char> validChoices = {'q'};
+	for (const auto &option : options_)
+		validChoices.push_back(option.first);
 
 	while (true)
 	{
-		clear();
-		mvprintw(0, 0, "Use arrows to navigate, Enter to select, 'q' to quit.");
+		cout << "Tasks:";
+		for (const auto &option : options_)
+			cout
+				<< "\n"
+				<< option.first
+				<< " - "
+				<< option.second.first;
 
-		for (int i = 0; i < labels.size(); ++i)
+		newLine();
+		cout << "\nq - Quit";
+
+		newLine();
+		cout << "\nYour choice: ";
+
+		cin >> ch;
+		clearConsole();
+
+		if (ch == 'q')
 		{
-			if (i == highlight)
-				attron(A_REVERSE);
-			mvprintw(i + 2, 2, "%c - %s", keys[i], labels[i].c_str());
-			if (i == highlight)
-				attroff(A_REVERSE);
-		}
-
-		int input = getch();
-
-		switch (input)
-		{
-		case KEY_UP:
-			highlight = (highlight - 1 + labels.size()) % labels.size();
-			break;
-		case KEY_DOWN:
-			highlight = (highlight + 1) % labels.size();
-			break;
-		case '\n':
-		{
-			clear();
-			refresh();
-			endwin();
-
-			options_[keys[highlight]].second();
-
-			cout << "\nPress Enter to return to menu...";
-			cout.flush();
-
-			cin.sync();
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cin.get();
-
-			initscr();
-			noecho();
-			cbreak();
-			keypad(stdscr, TRUE);
-			curs_set(0);
+			cout << "Goodbye!\n";
+			pauseConsole();
 			break;
 		}
 
-		case 'q':
-			endwin();
-			return;
+		if (!checkChoiceInput(ch, validChoices))
+		{
+
+			cout << "Invalid choice. Please try again.\n";
+			pauseConsole();
+			continue;
 		}
+
+		clearConsole();
+		cout << "Task" << ch << " selected\n";
+		newLine();
+
+		options_.at(ch).second();
+
+		pauseConsole();
 	}
 }

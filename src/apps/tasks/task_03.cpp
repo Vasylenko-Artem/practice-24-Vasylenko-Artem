@@ -13,7 +13,7 @@ string clean(const string &word)
 	string res;
 	for (char c : word)
 		if (isalnum((unsigned char)c))
-			res += static_cast<char>(tolower(c));
+			res += static_cast<char>(tolower((unsigned char)c));
 	return res;
 }
 
@@ -22,13 +22,15 @@ void task_03()
 	string inFile, outFile;
 
 	cout << "Enter input file name: ";
-	getline(cin, inFile);
+	// getline(cin, inFile);
+	cin >> inFile;
 
 	cout << "Enter output file name: ";
-	getline(cin, outFile);
+	// getline(cin, outFile);
+	cin >> outFile;
 
-	ifstream in(inFile);
-	ofstream out(outFile);
+	ifstream in("public/" + inFile);
+	ofstream out("public/" + outFile);
 
 	unordered_map<string, int> freq;
 	string word;
