@@ -22,14 +22,18 @@ void task_03()
 	string inFile, outFile;
 
 	cout << "Enter input file name: ";
-	// getline(cin, inFile);
 	cin >> inFile;
 
+	ifstream in("public/" + inFile);
+	if (!in)
+	{
+		cout << "File not found\n";
+		return;
+	}
+
 	cout << "Enter output file name: ";
-	// getline(cin, outFile);
 	cin >> outFile;
 
-	ifstream in("public/" + inFile);
 	ofstream out("public/" + outFile);
 
 	unordered_map<string, int> freq;
@@ -44,6 +48,4 @@ void task_03()
 	for (const auto &[w, c] : freq)
 		if (c == 1)
 			out << w << "\n";
-
-	// return 0;
 }

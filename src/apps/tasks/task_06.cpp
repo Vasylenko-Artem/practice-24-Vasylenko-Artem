@@ -16,10 +16,7 @@ void task_06()
 
 	// Grouping by last digit
 	for (auto it = V.begin(); it != V.end(); ++it)
-	{
-		int last_digit = abs(*it) % 10;
-		M.insert({last_digit, *it});
-	}
+		M.insert({abs(*it) % 10, *it});
 
 	// Creating a map for results (key - last digit, value - sum without the first one)
 	map<int, int> result;
@@ -48,6 +45,4 @@ void task_06()
 	cout << "Result:\n";
 	for (auto it = result.begin(); it != result.end(); ++it)
 		cout << it->first << " : " << it->second << endl;
-
-	// return 0;
 }

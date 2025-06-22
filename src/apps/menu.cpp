@@ -72,7 +72,6 @@ void menu::show()
 
 		if (!checkChoiceInput(ch, validChoices))
 		{
-
 			cout << "Invalid choice. Please try again.\n";
 			pauseConsole();
 			continue;

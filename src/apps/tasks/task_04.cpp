@@ -16,7 +16,7 @@ void task_04()
 	if (numbers.size() < 2)
 	{
 		cerr << "Error: Need at least two elements.\n";
-		// return 1;
+		return;
 	}
 
 	vector<double> even_indexed;
@@ -32,6 +32,4 @@ void task_04()
 	cout << "Elements with even positions:\n";
 	ostream_iterator<double> out(cout, " ");
 	copy(even_indexed.begin(), even_indexed.end(), out);
-
-	// return 0;
 }

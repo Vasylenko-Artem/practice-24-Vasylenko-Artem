@@ -36,7 +36,7 @@ void task_05()
 	if (V.size() % 2 != 0)
 	{
 		cerr << "Error: The number of elements must be even.\n";
-		// return 1;
+		return;
 	}
 
 	// Dividing a vector into two halves
@@ -52,8 +52,6 @@ void task_05()
 	cout << "\nModified vector:\n";
 	for (double val : V)
 		cout << val << " ";
-
-	// return 0;
 }
 
 // Input:

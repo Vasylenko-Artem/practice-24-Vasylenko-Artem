@@ -28,7 +28,7 @@ void task_02()
 	if (L.empty())
 	{
 		cout << "List is empty. Product = 0\n";
-		// return 0;
+		return;
 	}
 
 	auto it = L.begin();
@@ -46,6 +46,4 @@ void task_02()
 		cout << val << " ";
 
 	cout << "\nResult: " << product << endl;
-
-	// return 0;
 }

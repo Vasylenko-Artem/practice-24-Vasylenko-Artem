@@ -39,11 +39,9 @@ void task_01()
 	if (m < 0 || n < 0 || m > n)
 	{
 		cerr << "Invalid input: m and n must be non-negative and m <= n." << endl;
-		// return 1;
+		return;
 	}
 
 	double result = sum(m, n);
 	cout << "Result: " << result << endl;
-
-	// return 0;
 }
