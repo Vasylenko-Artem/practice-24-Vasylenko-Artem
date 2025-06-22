@@ -1,7 +1,9 @@
 #include "menu.h"
 #include <ncurses.h>
 
-menu::menu(const std::map<char, std::pair<std::string, std::function<void()>>> &options)
+using namespace std;
+
+menu::menu(const map<char, pair<string, function<void()>>> &options)
 	: options_(options) {}
 
 menu::~menu() {}
@@ -16,8 +18,8 @@ void menu::show()
 
 	int highlight = 0;
 
-	std::vector<char> keys;
-	std::vector<std::string> labels;
+	vector<char> keys;
+	vector<string> labels;
 
 	for (const auto &opt : options_)
 	{
@@ -57,13 +59,13 @@ void menu::show()
 
 			options_[keys[highlight]].second();
 
-			std::cout << "\nPress Enter to return to menu...";
-			std::cout.flush();
+			cout << "\nPress Enter to return to menu...";
+			cout.flush();
 
-			std::cin.sync();
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cin.get();
+			cin.sync();
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.get();
 
 			initscr();
 			noecho();

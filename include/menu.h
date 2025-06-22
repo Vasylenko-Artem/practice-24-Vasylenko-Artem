@@ -5,14 +5,16 @@
 #include <functional>
 #include <iostream>
 
+using namespace std;
+
 class menu
 {
 public:
-	menu(const std::map<char, std::pair<std::string, std::function<void()>>> &options);
+	menu(const map<char, pair<string, function<void()>>> &options);
 	~menu();
 
 	void show();
 
 private:
-	std::map<char, std::pair<std::string, std::function<void()>>> options_;
+	map<char, pair<string, function<void()>>> options_;
 };
