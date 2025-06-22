@@ -1,6 +1,8 @@
 #include "tasks.h"
 
-const std::map<char, std::pair<std::string, std::function<void()>>> tasks = {
+using namespace std;
+
+const map<char, pair<string, function<void()>>> tasks = {
 	{'1', {"Task 1", task_01}},
 	{'2', {"Task 2", task_02}},
 	{'3', {"Task 3", task_03}},
