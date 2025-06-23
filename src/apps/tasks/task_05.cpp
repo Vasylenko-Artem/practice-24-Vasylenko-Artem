@@ -1,11 +1,5 @@
 #include "tasks.h"
 
-// Задача_2_10.Дано вектор V з парною кількістю елементів.У першій половині
-// вихідного вектора замінити всі негативні числа на −1,
-// а другий – все позитивні
-// числа на 1. Використовувати два виклики алгоритму replace_if з різними
-// параметрами – функціональними об'єктами.
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -26,18 +20,20 @@ struct IsPositive
 
 void task_05()
 {
-	vector<double> V;
+	size_t size;
+	cout << "Enter even size of vector: ";
+	cin >> size;
 
-	cout << "Enter an even number of elements:\n";
-	double num;
-	while (cin >> num)
-		V.push_back(num);
-
-	if (V.size() % 2 != 0)
+	if (size <= 0 || size % 2 != 0)
 	{
-		cerr << "Error: The number of elements must be even.\n";
+		cerr << "Error: Size must be a positive even number.\n";
 		return;
 	}
+
+	vector<double> V(size);
+	cout << "Enter " << size << " real numbers:\n";
+	for (size_t i = 0; i < size; ++i)
+		cin >> V[i];
 
 	// Dividing a vector into two halves
 	auto mid = V.begin() + V.size() / 2;

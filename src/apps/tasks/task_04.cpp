@@ -4,14 +4,32 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <sstream>
 
 using namespace std;
 
 void task_04()
 {
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 	cout << "Enter at least two real numbers:\n";
-	istream_iterator<double> in(cin), end;
-	vector<double> numbers(in, end);
+
+	vector<double> numbers;
+
+	string line;
+	while (true)
+	{
+		getline(cin, line);
+		if (line.empty()) // End of input
+			break;
+
+		istringstream iss(line);
+		istream_iterator<double> in(iss), end;
+
+		// Add the numbers to the vector
+		numbers.insert(numbers.end(), in, end);
+	}
 
 	if (numbers.size() < 2)
 	{

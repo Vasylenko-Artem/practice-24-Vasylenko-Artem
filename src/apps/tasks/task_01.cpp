@@ -31,7 +31,6 @@ double sum(int m, int n)
 
 void task_01()
 {
-	std::cout << "Task 1 running\n";
 	int m, n;
 	cout << "Enter m and n: ";
 	cin >> m >> n;
