@@ -9,7 +9,6 @@ void task_02()
 {
 	list<double> L;
 	int n;
-	double x;
 
 	cout << "Input number of elements: ";
 	cin >> n;
@@ -22,23 +21,21 @@ void task_02()
 		L.push_back(val);
 	}
 
-	cout << "Input x: ";
-	cin >> x;
-
 	if (L.empty())
 	{
 		cout << "List is empty. Product = 0\n";
 		return;
 	}
 
-	auto it = L.begin();
-	double product = (*it - x); // (x１ - x)
-	auto prev = it++;
+	auto front = L.begin();
+	auto back = L.rbegin();
+	double product = 1;
 
-	while (it != L.end())
+	for (int i = 0; i < n / 2; ++i)
 	{
-		product *= (*it - *prev); // (x2 - x1), (x3 - x2)...
-		prev = it++;
+		product *= (*front - *back);
+		++front;
+		++back;
 	}
 
 	cout << "\nList L:\n";
@@ -47,3 +44,9 @@ void task_02()
 
 	cout << "\nResult: " << product << endl;
 }
+
+// 1 2 3 4
+// (1 - 4) (2 - 3) = 3
+
+// 3 2 1
+// (3 - 1) (2 - 1) = 2
